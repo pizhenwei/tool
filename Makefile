@@ -2,6 +2,8 @@ DTOH=dtoh
 HTOD=htod
 CTIME=ctime
 GETTIMEOFDAY=gettimeofday
+GETALLCHANGELOG=get-all-changelog.py
+OBJDUMPFUNCTION=objdump-function.sh
 
 .PHONY : $(DTOH) $(HTOD) $(CTIME) $(GETTIMEOFDAY)
 
@@ -24,9 +26,13 @@ install :
 	@sudo cp $(HTOD) /usr/bin
 	@sudo cp $(CTIME) /usr/bin
 	@sudo cp $(GETTIMEOFDAY) /usr/bin
+	@sudo cp $(GETALLCHANGELOG) /usr/bin
+	@sudo cp $(OBJDUMPFUNCTION) /usr/bin
 
 clean :
 	@rm -rf $(DTOH)
 	@rm -rf $(HTOD)
 	@rm -rf $(CTIME)
 	@rm -rf $(GETTIMEOFDAY)
+	@rm -rf $(GETALLCHANGELOG)
+	@rm -rf $(OBJDUMPFUNCTION)
