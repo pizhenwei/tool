@@ -26,3 +26,6 @@ RUN
 >
 >sparse-file : generate sparse file
 >       Ex, sparse-file -s 4096 -t 409600000
+>
+>filemap : dump file extents, logical address, physical address mapping info.
+>       Ex, filemap test.file
