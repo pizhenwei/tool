@@ -4,10 +4,11 @@ CTIME=ctime
 GETTIMEOFDAY=gettimeofday
 GETALLCHANGELOG=get-all-changelog.py
 OBJDUMPFUNCTION=objdump-function.sh
+SPARSEFILE=sparse-file
 
-.PHONY : $(DTOH) $(HTOD) $(CTIME) $(GETTIMEOFDAY)
+.PHONY : $(DTOH) $(HTOD) $(CTIME) $(GETTIMEOFDAY) $(SPARSEFILE)
 
-all : $(DTOH) $(HTOD) $(CTIME) $(GETTIMEOFDAY)
+all : $(DTOH) $(HTOD) $(CTIME) $(GETTIMEOFDAY) $(SPARSEFILE)
 
 $(DTOH) :
 	gcc $(DTOH).c -O2 -o $(DTOH)
@@ -21,6 +22,9 @@ $(CTIME) :
 $(GETTIMEOFDAY) :
 	gcc $(GETTIMEOFDAY).c -O2 -o $(GETTIMEOFDAY)
 
+$(SPARSEFILE) :
+	gcc $(SPARSEFILE).c -O2 -o $(SPARSEFILE)
+
 install :
 	@sudo cp $(DTOH) /usr/bin
 	@sudo cp $(HTOD) /usr/bin
@@ -28,6 +32,7 @@ install :
 	@sudo cp $(GETTIMEOFDAY) /usr/bin
 	@sudo cp $(GETALLCHANGELOG) /usr/bin
 	@sudo cp $(OBJDUMPFUNCTION) /usr/bin
+	@sudo cp $(SPARSEFILE) /usr/bin
 
 clean :
 	@rm -rf $(DTOH)
@@ -36,3 +41,4 @@ clean :
 	@rm -rf $(GETTIMEOFDAY)
 	@rm -rf $(GETALLCHANGELOG)
 	@rm -rf $(OBJDUMPFUNCTION)
+	@rm -rf $(SPARSEFILE)

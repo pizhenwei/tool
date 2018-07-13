@@ -23,3 +23,6 @@ RUN
 >
 >objdump-function.sh : dump one function disassemble code  
 >       Ex, objdump-function.sh vmlinux do_fork  
+>
+>sparse-file : generate sparse file
+>       Ex, sparse-file -s 4096 -t 409600000
