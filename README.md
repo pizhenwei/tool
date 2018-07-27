@@ -24,8 +24,11 @@ RUN
 >objdump-function.sh : dump one function disassemble code  
 >       Ex, objdump-function.sh vmlinux do_fork  
 >
->sparse-file : generate sparse file
->       Ex, sparse-file -s 4096 -t 409600000
+>sparse-file : generate sparse file  
+>       Ex, sparse-file -s 4096 -t 409600000  
 >
->filemap : dump file extents, logical address, physical address mapping info.
->       Ex, filemap test.file
+>filemap : dump file extents, logical address, physical address mapping info.  
+>       Ex, filemap test.file  
+>
+>pmu-counters : get pmu counters  
+>       Ex, pmu-counters  

@@ -6,10 +6,11 @@ GETALLCHANGELOG=get-all-changelog.py
 OBJDUMPFUNCTION=objdump-function.sh
 SPARSEFILE=sparse-file
 FILEMAP=filemap
+PMU-COUNTERS=pmu-counters.c
 
-.PHONY : $(DTOH) $(HTOD) $(CTIME) $(GETTIMEOFDAY) $(SPARSEFILE) $(FILEMAP)
+.PHONY : $(DTOH) $(HTOD) $(CTIME) $(GETTIMEOFDAY) $(SPARSEFILE) $(FILEMAP) $(PMU-COUNTERS)
 
-all : $(DTOH) $(HTOD) $(CTIME) $(GETTIMEOFDAY) $(SPARSEFILE) $(FILEMAP)
+all : $(DTOH) $(HTOD) $(CTIME) $(GETTIMEOFDAY) $(SPARSEFILE) $(FILEMAP) $(PMU-COUNTERS)
 
 $(DTOH) :
 	gcc $(DTOH).c -O2 -o $(DTOH)
@@ -29,6 +30,9 @@ $(SPARSEFILE) :
 $(FILEMAP) :
 	gcc $(FILEMAP).c -O2 -o $(FILEMAP)
 
+$(PMU-COUNTERS) :
+	gcc $(PMU-COUNTERS).c -O2 -o $(PMU-COUNTERS)
+
 install :
 	@sudo cp $(DTOH) /usr/bin
 	@sudo cp $(HTOD) /usr/bin
@@ -38,6 +42,7 @@ install :
 	@sudo cp $(OBJDUMPFUNCTION) /usr/bin
 	@sudo cp $(SPARSEFILE) /usr/bin
 	@sudo cp $(FILEMAP) /usr/bin
+	@sudo cp $(PMU-COUNTERS) /usr/bin
 
 clean :
 	@rm -rf $(DTOH)
@@ -48,3 +53,4 @@ clean :
 	@rm -rf $(OBJDUMPFUNCTION)
 	@rm -rf $(SPARSEFILE)
 	@rm -rf $(FILEMAP)
+	@rm -rf $(PMU-COUNTERS)
