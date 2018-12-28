@@ -6,9 +6,10 @@ GETALLCHANGELOG=get-all-changelog.py
 OBJDUMPFUNCTION=objdump-function.sh
 SPARSEFILE=sparse-file
 FILEMAP=filemap
-PMU-COUNTERS=pmu-counters.c
+PMU-COUNTERS=pmu-counters
+GETTIMEOFDAY-BENCH=gettimeofday-bench
 
-.PHONY : $(DTOH) $(HTOD) $(CTIME) $(GETTIMEOFDAY) $(SPARSEFILE) $(FILEMAP) $(PMU-COUNTERS)
+.PHONY : $(DTOH) $(HTOD) $(CTIME) $(GETTIMEOFDAY) $(SPARSEFILE) $(FILEMAP) $(PMU-COUNTERS) $(GETTIMEOFDAY-BENCH)
 
 all : $(DTOH) $(HTOD) $(CTIME) $(GETTIMEOFDAY) $(SPARSEFILE) $(FILEMAP) $(PMU-COUNTERS)
 
@@ -33,6 +34,9 @@ $(FILEMAP) :
 $(PMU-COUNTERS) :
 	gcc $(PMU-COUNTERS).c -O2 -o $(PMU-COUNTERS)
 
+$(GETTIMEOFDAY-BENCH) :
+	gcc $(GETTIMEOFDAY-BENCH).c -O2 -o $(GETTIMEOFDAY-BENCH)
+
 install :
 	@sudo cp $(DTOH) /usr/bin
 	@sudo cp $(HTOD) /usr/bin
@@ -43,6 +47,7 @@ install :
 	@sudo cp $(SPARSEFILE) /usr/bin
 	@sudo cp $(FILEMAP) /usr/bin
 	@sudo cp $(PMU-COUNTERS) /usr/bin
+	@sudo cp $(GETTIMEOFDAY-BENCH) /usr/bin
 
 clean :
 	@rm -rf $(DTOH)
@@ -54,3 +59,4 @@ clean :
 	@rm -rf $(SPARSEFILE)
 	@rm -rf $(FILEMAP)
 	@rm -rf $(PMU-COUNTERS)
+	@rm -rf $(GETTIMEOFDAY-BENCH)
