@@ -8,10 +8,11 @@ SPARSEFILE=sparse-file
 FILEMAP=filemap
 PMU-COUNTERS=pmu-counters
 GETTIMEOFDAY-BENCH=gettimeofday-bench
+MEMORYFILL=memoryfill
 
-.PHONY : $(DTOH) $(HTOD) $(CTIME) $(GETTIMEOFDAY) $(SPARSEFILE) $(FILEMAP) $(PMU-COUNTERS) $(GETTIMEOFDAY-BENCH)
+.PHONY : $(DTOH) $(HTOD) $(CTIME) $(GETTIMEOFDAY) $(SPARSEFILE) $(FILEMAP) $(PMU-COUNTERS) $(GETTIMEOFDAY-BENCH) $(MEMORYFILL)
 
-all : $(DTOH) $(HTOD) $(CTIME) $(GETTIMEOFDAY) $(SPARSEFILE) $(FILEMAP) $(PMU-COUNTERS)
+all : $(DTOH) $(HTOD) $(CTIME) $(GETTIMEOFDAY) $(SPARSEFILE) $(FILEMAP) $(PMU-COUNTERS) $(MEMORYFILL)
 
 $(DTOH) :
 	gcc $(DTOH).c -O2 -o $(DTOH)
@@ -37,6 +38,9 @@ $(PMU-COUNTERS) :
 $(GETTIMEOFDAY-BENCH) :
 	gcc $(GETTIMEOFDAY-BENCH).c -O2 -o $(GETTIMEOFDAY-BENCH)
 
+$(MEMORYFILL) :
+	gcc $(MEMORYFILL).c -O2 -o $(MEMORYFILL)
+
 install :
 	@sudo cp $(DTOH) /usr/bin
 	@sudo cp $(HTOD) /usr/bin
@@ -48,6 +52,7 @@ install :
 	@sudo cp $(FILEMAP) /usr/bin
 	@sudo cp $(PMU-COUNTERS) /usr/bin
 	@sudo cp $(GETTIMEOFDAY-BENCH) /usr/bin
+	@sudo cp $(MEMORYFILL) /usr/bin
 
 clean :
 	@rm -rf $(DTOH)
@@ -60,3 +65,4 @@ clean :
 	@rm -rf $(FILEMAP)
 	@rm -rf $(PMU-COUNTERS)
 	@rm -rf $(GETTIMEOFDAY-BENCH)
+	@rm -rf $(MEMORYFILL)
