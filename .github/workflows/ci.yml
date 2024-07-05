@@ -1,0 +1,20 @@
+name: CI
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  build-rdma:
+    runs-on: ubuntu-latest
+    container: debian:buster
+    steps:
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+      - name: make
+        run: |
+          apt-get update && apt-get install -y build-essential
+          apt search linux-headers-`uname -r`
+          apt search ofed
+          apt search rxe
+          modprobe rdma_cm
