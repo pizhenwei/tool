@@ -16,4 +16,4 @@ jobs:
           apt search linux-headers-`uname -r`
           apt search ofed
           apt search rxe
-          modprobe rdma_cm
+          sudo modprobe rdma_cm
