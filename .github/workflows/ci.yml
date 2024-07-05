@@ -15,7 +15,7 @@ jobs:
           apt-get update && apt-get install -y build-essential
           apt search linux-headers-`uname -r`
           make -C rxe rxe
-          sudo modprobe rdma_cm
+          sudo modprobe rdma_cm udp_tunnel ip6_udp_tunnel ib_uverbs
           sudo insmod ./rxe/rdma_rxe.ko
           sudo rdma link add rxe0 type rxe netdev `ip a | grep -E "^2: " | tr ":" " " | awk '{print $2}'`
           ls /sys/class/infiniband
