@@ -18,4 +18,4 @@ jobs:
           apt search rxe
           sudo modprobe rdma_cm
           ls /sys/class
-          cat /boot/config-`uname -r`
+          lsmod | grep rdma
