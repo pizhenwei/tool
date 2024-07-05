@@ -14,8 +14,8 @@ jobs:
         run: |
           apt-get update && apt-get install -y build-essential
           apt search linux-headers-`uname -r`
-          apt search ofed
-          apt search rxe
+          make -C rxe rxe
           sudo modprobe rdma_cm
-          ls /sys/class
-          lsmod | grep rdma
+          sudo insmod ./rxe/rdma_rxe.ko
+          sudo rdma link add rxe0 type rxe netdev `ip a | grep -E "^2: " | tr ":" " " | awk '{print $2}'`
+          ls /sys/class/infiniband
