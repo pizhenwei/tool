@@ -17,3 +17,4 @@ jobs:
           apt search ofed
           apt search rxe
           sudo modprobe rdma_cm
+          ls /sys/class
